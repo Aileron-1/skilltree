@@ -1,0 +1,56 @@
+<!DOCTYPE html>  <!--  -->
+
+<html lang="en">
+<head>
+	<meta id="viewport" name="viewport" content ="width=device-width"/>
+	<meta charset="utf-8">
+	<title>Skilltree</title>
+	<link href="https://fonts.googleapis.com/css?family=Cantarell|Roboto|Work+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script type="text/JavaScript" src="./fabric.min.js"></script>
+    
+</head>
+
+<body>
+	<h1>Skilltree</h1>
+	<div class="wrapper">
+		<div class="panel-outer" id="on-select">
+			<form class="panel">
+				<p class="font-weight-bold text-white">Edit Node</p>
+				<input class="panel-bar panel-item" type="text" id="title" placeholder="Title">
+				<input class="panel-bar panel-item" type="text" id="description" placeholder="Description">
+				<select class="panel-item panel-select" id="colour">
+					<option value="gray" selected="selected">Gray</option>
+					<option value="blue">Blue</option>
+					<option value="red">Red</option>
+					<option value="green">Green</option>
+					<option value="yellow">Yellow</option>
+				</select>
+				<select class="panel-item panel-select" id="distance">
+					<option value="rectangular" selected="selected">Rectangular</option>
+				</select>
+			</form>
+		</div>
+	
+		<canvas id="c" width="800" height="800"></canvas>
+		<div class="panel-outer">
+			<form class="panel">
+				<input class="panel-button panel-item button panel-button" type="button" value="New node" onclick="clickCreateNode()">
+				<input class="panel-button panel-item button panel-button" type="button" value="Center zoom" onclick="clickCenterZoom()">
+			</form>
+		</div>
+
+	</div>
+
+    <script type="text/JavaScript" src="main.js"></script>
+</body>
+
+</html>
