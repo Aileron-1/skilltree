@@ -1,5 +1,7 @@
 function clickCreateNode() {
-    nodes.push(createNode(canvas));
+    let n = createNode(canvas);
+    nodes.push(n);
+    canvas.setActiveObject(n.group);
 }
 
 function clickCenterZoom() {
@@ -38,14 +40,14 @@ function createNode(canvas) {
         fill: 'rgba(0,0,0,0.1)',
         transparentCorners: false
     });
-    obj.title = new fabric.Text('Node title', {
+    obj.title = new fabric.Text('Title', {
         top: -30,
         left: 0,
         fontSize: 22,
         originX: 'center',
         fontFamily: 'Segoe UI'
     });
-    obj.desc = new fabric.Text('Node description', {
+    obj.desc = new fabric.Text('Description', {
         top: 5,
         left: 0,
         fontSize: 18,
