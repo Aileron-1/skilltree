@@ -84,6 +84,7 @@ function createNode(canvas) {
 
         newWidth = Math.max(tw,dw)+50;
         obj.rect.width = newWidth;
+        obj.bg.width = newWidth;
         obj.group.width = newWidth;
         canvas.renderAll();
     };
