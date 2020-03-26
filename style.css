@@ -10,7 +10,7 @@
 }
 
 .panel-outer {
-    background: #0057a7;
+    background: #173f04;
     padding-top: 12px;
     width: 100%;
 }
@@ -56,6 +56,17 @@
     flex: 1 0;
 }
 
+.top-panel {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+.bot-panel {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+}
+
 .button {
     display: inline-block;
     border: 2px solid white;
@@ -91,6 +102,44 @@
 
 #on-select {
     display: none;
-    position: absolute;
-    z-index: 5;
+
+}
+
+/*Editor panel*/
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+
+@media only screen and (min-width: 768px) {
 }

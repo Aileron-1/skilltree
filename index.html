@@ -20,32 +20,42 @@
 </head>
 
 <body>
-	<h1>Skilltree</h1>
 	<div class="wrapper">
-		<div class="panel-outer" id="on-select">
-			<form class="panel">
-				<p class="font-weight-bold text-white">Edit Node</p>
-				<input class="panel-bar panel-item" type="text" id="title" placeholder="Title">
-				<input class="panel-bar panel-item" type="text" id="description" placeholder="Description">
-				<select class="panel-item panel-select" id="colour">
-					<option value="gray" selected="selected">Gray</option>
-					<option value="blue">Blue</option>
-					<option value="red">Red</option>
-					<option value="green">Green</option>
-					<option value="yellow">Yellow</option>
-				</select>
-				<select class="panel-item panel-select" id="distance">
-					<option value="rectangular" selected="selected">Rectangular</option>
-				</select>
-			</form>
+		<div id="mySidebar" class="sidebar">
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		  <form class="panel">
+			  <p class="font-weight-bold text-white">Edit Node</p>
+			  <input class="panel-bar panel-item" type="text" id="title" placeholder="Title">
+			  <input class="panel-bar panel-item" type="text" id="description" placeholder="Description">
+			  <select class="panel-item panel-select" id="colour">
+				  <option value="gray" selected="selected">Gray</option>
+				  <option value="blue">Blue</option>
+				  <option value="red">Red</option>
+				  <option value="green">Green</option>
+				  <option value="yellow">Yellow</option>
+			  </select>
+			  <select class="panel-item panel-select" id="distance">
+				  <option value="rectangular" selected="selected">Rectangular</option>
+			  </select>
+		  </form>
 		</div>
-	
-		<canvas id="c" width="800" height="800"></canvas>
-		<div class="panel-outer">
-			<form class="panel">
-				<input class="panel-button panel-item button panel-button" type="button" value="New node" onclick="clickCreateNode()">
-				<input class="panel-button panel-item button panel-button" type="button" value="Center zoom" onclick="clickCenterZoom()">
-			</form>
+		
+		 
+		<div class="main">
+			<div class="panel-outer top-panel">
+				<form class="panel">
+					<input class="panel-button panel-item button" type="button" value="New node" onclick="clickCreateNode()">
+					<input class="panel-button button panel-item openbtn" id="on-select" type="button" value="Edit node" onclick="openNav()">
+				</form>
+			</div>
+			<canvas id="c" width="800" height="800"></canvas>
+			<div class="panel-outer bot-panel">
+				<form class="panel">
+					<input class="panel-button panel-item button" type="button" value="Zoom in" onclick="clickZoomIn()">
+					<input class="panel-button panel-item button" type="button" value="Zoom out" onclick="clickZoomOut()">
+					<input class="panel-button panel-item button" type="button" value="Center" onclick="clickCenterZoom()">
+				</form>
+			</div>
 		</div>
 
 	</div>
