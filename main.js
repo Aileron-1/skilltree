@@ -32,13 +32,28 @@ function zoom(delta) {
 function createNode(canvas) {
     let obj = {};
 
+    obj.children = [];
+
+    obj.colour = 'gray';
+
+
+    obj.bg = new fabric.Rect({
+        originX: 'center',
+        originY: 'center',
+        width: 150,
+        height: 80,
+        fill: 'rgba(255,255,255,1)',
+        transparentCorners: false,
+    });
     obj.rect = new fabric.Rect({
         originX: 'center',
         originY: 'center',
         width: 150,
         height: 80,
         fill: 'rgba(0,0,0,0.1)',
-        transparentCorners: false
+        transparentCorners: false,
+        strokeWidth: 2,
+        stroke: "rgba(0,0,0,0.5)",
     });
     obj.title = new fabric.Text('Title', {
         top: -30,
@@ -54,7 +69,7 @@ function createNode(canvas) {
         originX: 'center',
         fontFamily: 'Segoe UI'
     });
-    obj.group = new fabric.Group([ obj.rect, obj.title, obj.desc ], {
+    obj.group = new fabric.Group([ obj.bg, obj.rect, obj.title, obj.desc ], {
         left: 0,
         top: 0,
         angle: 0,
@@ -68,7 +83,7 @@ function createNode(canvas) {
         let tw = obj.title.getScaledWidth();
         let dw = obj.desc.getScaledWidth();
 
-        newWidth = Math.max(tw,dw)+20;
+        newWidth = Math.max(tw,dw)+50;
         obj.rect.width = newWidth;
         obj.group.width = newWidth;
         canvas.renderAll();
@@ -79,6 +94,8 @@ function createNode(canvas) {
         $('#on-select').css("display", "block");
         $('#title').val(obj.title.text);
         $('#description').val(obj.desc.text);
+        console.log(obj.rect.fill)
+        $('#colour').val(obj.colour);
     });
 
     // Show shape on canvas
@@ -99,8 +116,10 @@ function onInputText() {
     nodes.forEach(function (item, index) {
         if (item.group == active) {
             obj = item;
+            obj.colour = $("#colour").val();
             obj.title.set('text', $("#title").val());
             obj.desc.set('text', $("#description").val());
+            obj.rect.set('fill', colours[obj.colour]);
             obj.updateNodeDraw();
         }
     });
@@ -112,17 +131,25 @@ const colours = {
     'red': 'rgba(255,0,0,0.25)',
     'green': 'rgba(0,255,0,0.25)',
     'blue': 'rgba(0,0,255,0.25)',
+    'yellow': 'rgba(255,255,0,0.25)',
+    'purple': 'rgba(190,0,255,0.25)',
+    'cyan': 'rgba(0,255,255,0.25)',
 };
 var nodes = [];
 
 // Create canvas
 var canvas = this.__canvas = new fabric.Canvas('c');
-canvas.setBackgroundColor('rgba(0,0,255,0.05)')
+canvas.setBackgroundColor({
+    source: './grid.png',
+    repeat: 'repeat'
+}, canvas.renderAll.bind(canvas));
+
 canvas.selection = false;
 windowWidth = $(window).width();
 windowHeight= $(window).height();
 canvas.setDimensions({width:windowWidth, height:windowHeight});
 clickCreateNode();
+canvas.requestRenderAll();
 
 
 // Add mobile check
@@ -137,6 +164,9 @@ $("#title").on('keyup', function (e) {
     onInputText();
 });
 $("#description").on('keyup', function (e) {
+    onInputText();
+});
+$("#colour").change(function(){
     onInputText();
 });
 
@@ -204,3 +234,4 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
 }
+
