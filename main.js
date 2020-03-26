@@ -76,7 +76,6 @@ function createNode(canvas) {
         hasRotatingPoint: false,
         hasControls: false
     });
-    obj.group.scale(0.5);
 
     //
     obj.updateNodeDraw = function () {
