@@ -114,9 +114,9 @@
   right: 0;
   background-color: rgb(255, 255, 255);
   overflow-x: hidden;
-  transition: 0.5s;
+  transition: 0.1s;
   padding-top: 60px;
-  border-left: 2px solid rgb(201, 201, 201);
+  border-left: 3px solid rgb(97, 133, 57);
 }
 
 .sidebar a {
@@ -125,7 +125,7 @@
   font-size: 25px;
   color: #818181;
   display: block;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 
 .sidebar a:hover {

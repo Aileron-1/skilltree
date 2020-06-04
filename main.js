@@ -12,18 +12,18 @@ function clickCenterZoom() {
 }
 
 function clickZoomIn() {
-    zoom(0.5);
+    zoom(0.25);
 }
 
 function clickZoomOut() {
-    zoom(-0.5);
+    zoom(-0.25);
 }
 
 function zoom(delta) {
     var zoom = canvas.getZoom();
-    zoom = zoom + delta;
+    zoom = zoom + (zoom * delta);
     if (zoom > 5) zoom = 5;
-    if (zoom < 0.5) zoom = 0.5;
+    if (zoom < 0.25) zoom = 0.25;
     pos = canvas.getVpCenter();
     canvas.zoomToPoint({ x: pos.x, y: pos.y }, zoom);
     console.log(zoom)
@@ -33,9 +33,7 @@ function createNode(canvas) {
     let obj = {};
 
     obj.children = [];
-
     obj.colour = 'gray';
-
 
     obj.bg = new fabric.Rect({
         originX: 'center',
@@ -69,12 +67,13 @@ function createNode(canvas) {
         originX: 'center',
         fontFamily: 'Segoe UI'
     });
-    obj.group = new fabric.Group([ obj.bg, obj.rect, obj.title, obj.desc ], {
+    obj.group = new fabric.Group([ obj.bg, obj.rect, obj.title, obj.desc], {
         left: 0,
         top: 0,
         angle: 0,
         hasRotatingPoint: false,
-        hasControls: false
+        hasControls: false,
+        subTargetCheck: true
     });
 
     //
@@ -100,11 +99,16 @@ function createNode(canvas) {
 
     // Show shape on canvas
     canvas.add(obj.group);
+    obj.updateNodeDraw();
 
     // Center it 
     canvas.viewportCenterObject(obj.group);
 
     return obj;
+}
+
+function createLink(canvas) {
+
 }
 
 function onInputText() {
@@ -228,10 +232,22 @@ $(window).resize(function(){
 
 // Nav
 function openNav() {
-    document.getElementById("mySidebar").style.width = "300px";
+    document.getElementsByClassName("sidebar")[0].style.width = "300px";
 }
 
 function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
+    document.getElementsByClassName("sidebar")[0].style.width = "0";
 }
 
+
+// test
+const socket = new WebSocket('ws://localhost:5000');
+// Connection opened
+socket.addEventListener('open', function (event) {
+    socket.send('Hello Server!');
+});
+
+// Listen for messages
+socket.addEventListener('message', function (event) {
+    console.log('Message from server ', event.data);
+});
